@@ -1,38 +1,17 @@
-import { DataTypes, Model } from 'sequelize'
-import sequelizeConnection from '../services/connection'
+import { Table, Model, Column, DataType, HasMany, ForeignKey } from "sequelize-typescript"
+import { Usuarios } from "./usuarios.model";
 
-interface PolosAttributes {
-  id: number;
-  name: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
-
-class polos extends Model<PolosAttributes> implements PolosAttributes {
-    public id!: number
-    public name!: string
-
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public readonly deletedAt!: Date;
-}
-
-polos.init({
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  }, {
-    timestamps: true,
-    sequelize: sequelizeConnection,
-    paranoid: true,
-    tableName:"polos"
+@Table({
+  timestamps:false,
+  tableName: "polos"
 })
-  
-export default polos
+
+export class Polos extends Model {
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  name!: string;
+ 
+  @ForeignKey(()=>"id")
+}

@@ -1,56 +1,24 @@
-import { DataTypes, Model } from 'sequelize'
-import polosModel from './polos.model'
-import sequelizeConnection from '../services/connection'
-
-interface UsersAttributes {
-  id: number;
-  name: string;
-  password: string;
-  polo: any;
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
-}
-
-class users extends Model<UsersAttributes> implements UsersAttributes {
-  public id!: number
-  public name!: string
-  public polo!: any;
-  public password!: string;
+import { Table, Model, Column, DataType, HasOne, ForeignKey, HasMany } from "sequelize-typescript"
+import { Polos } from "./polos.model";
+import dbConnection from "../services/connection";
+@Table({
   
-    // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public readonly deletedAt!: Date;
-}
-
-users.init({
-    id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-       type: DataTypes.STRING
-    },
-    polo: {
-      type: DataTypes.INTEGER,
-    },
-    
-  }, {
-    timestamps: true,
-    sequelize: sequelizeConnection,
-    paranoid: true,
-    tableName:"users",
+  timestamps:false,
+  tableName: "usuarios",
+  
 })
 
-users.hasOne(polosModel, {
-  foreignKey: 'id',
-  as: 'polos' 
-});
+export class Usuarios extends Model {
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  name!: string;
 
-export default users
+  @ForeignKey(() => Polos)
+  polosId!: number;
+
+  @HasOne(() => Polos)
+  polos!: Polos[]
+  
+}

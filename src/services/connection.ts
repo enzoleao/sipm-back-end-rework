@@ -1,14 +1,23 @@
-import { Dialect, Sequelize } from 'sequelize'
+import {  Sequelize } from 'sequelize-typescript'
+import * as dotenv from 'dotenv'
+import { Usuarios } from '../models/usuarios.model'
+import { Polos } from '../models/polos.model'
+dotenv.config()
 
 const DB_NAME = process.env.DB_NAME as string
 const DB_USER = process.env.DB_USER as string
 const DB_HOST = process.env.DB_HOST
-const DB_DIALECT = process.env.DB_DIALECT as Dialect
 const DB_PASSWORD = process.env.DB_PASSWORD
 
-const sequelizeConnection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: DB_DIALECT
+
+const dbConnection = new Sequelize({
+  dialect: 'mysql',
+  host:DB_HOST,
+  username: DB_USER,
+  password: DB_PASSWORD,
+  database: DB_NAME, 
+  models:[Polos, Usuarios]
 })
 
-export default sequelizeConnection
+
+export default dbConnection
