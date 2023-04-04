@@ -1,6 +1,6 @@
-import { Table, Model, Column, DataType, HasOne, ForeignKey, HasMany } from "sequelize-typescript"
+import { Table, Model, Column, DataType, BelongsTo, ForeignKey, HasOne } from "sequelize-typescript"
 import { Polos } from "./polos.model";
-import dbConnection from "../services/connection";
+
 @Table({
   
   timestamps:false,
@@ -15,10 +15,7 @@ export class Usuarios extends Model {
   })
   name!: string;
 
-  @ForeignKey(() => Polos)
-  polosId!: number;
-
-  @HasOne(() => Polos)
-  polos!: Polos[]
+  @HasOne(() => Polos, 'id')
+  polos!: Polos;
   
 }

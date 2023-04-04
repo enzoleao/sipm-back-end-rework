@@ -13,5 +13,5 @@ export class Polos extends Model {
   })
   name!: string;
  
-  @ForeignKey(()=>"id")
+  
 }
