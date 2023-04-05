@@ -1,5 +1,5 @@
-import {  Sequelize } from 'sequelize-typescript'
 import * as dotenv from 'dotenv'
+import {  Sequelize } from 'sequelize-typescript'
 import { Usuarios } from '../models/usuarios.model'
 import { Polos } from '../models/polos.model'
 dotenv.config()

@@ -2,20 +2,22 @@ import { Table, Model, Column, DataType, BelongsTo, ForeignKey, HasOne } from "s
 import { Polos } from "./polos.model";
 
 @Table({
-  
-  timestamps:false,
   tableName: "usuarios",
-  
+  timestamps: false
 })
 
 export class Usuarios extends Model {
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
   name!: string;
 
-  @HasOne(() => Polos, 'id')
+  @ForeignKey(() => Polos)
+  @Column
+  poloId!: number;
+
+  @BelongsTo(() => Polos)
   polos!: Polos;
   
 }

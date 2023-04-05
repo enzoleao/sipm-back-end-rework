@@ -2,8 +2,8 @@ import { Table, Model, Column, DataType, HasMany, ForeignKey } from "sequelize-t
 import { Usuarios } from "./usuarios.model";
 
 @Table({
+  tableName: "polos",
   timestamps:false,
-  tableName: "polos"
 })
 
 export class Polos extends Model {
@@ -12,6 +12,15 @@ export class Polos extends Model {
     allowNull: false,
   })
   name!: string;
- 
-  
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+  })
+  actived!: string;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  vacantsPerHours!: string;
 }
