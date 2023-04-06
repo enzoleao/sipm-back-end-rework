@@ -1,25 +1,20 @@
 import { Table, Model, Column, DataType } from "sequelize-typescript"
 
 @Table({
-  tableName: "polos",
+  tableName: "holidays",
   timestamps:false,
 })
 
-export class Polos extends Model {
+export class Holidays extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
   name!: string;
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-  })
-  is_actived!: boolean;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.DATE,
     allowNull: false,
   })
-  vacantsPerHours!: string;
+  date!: string;
 }

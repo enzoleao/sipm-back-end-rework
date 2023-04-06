@@ -1,7 +1,13 @@
 import * as dotenv from 'dotenv'
 import {  Sequelize } from 'sequelize-typescript'
-import { Usuarios } from '../models/usuarios.model'
+import { Employees } from '../models/employees.model'
 import { Polos } from '../models/polos.model'
+import { Unidades } from '../models/unidades.model'
+import { Usuarios } from '../models/users.model'
+import { CpfRegistred } from '../models/cpf_registred.model'
+import { RegisteredRgsByEmployees } from '../models/registered_rgs_by_employees.model'
+import { Holidays } from '../models/holidays.model'
+import { Alerts } from '../models/alerts.model'
 dotenv.config()
 
 const DB_NAME = process.env.DB_NAME as string
@@ -16,7 +22,11 @@ const dbConnection = new Sequelize({
   username: DB_USER,
   password: DB_PASSWORD,
   database: DB_NAME, 
-  models:[Polos, Usuarios]
+  models:[
+    Polos, Employees, Unidades, Usuarios, 
+    CpfRegistred, RegisteredRgsByEmployees,
+    Holidays, Alerts
+  ]
 })
 
 

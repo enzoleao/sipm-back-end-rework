@@ -11,5 +11,5 @@ const PORT = process.env.PORT || 3001
 app.use(express.json())
 app.use(Routes)
 
-// dbConnection.sync({alter:true})
+dbConnection.sync({alter:true})
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))

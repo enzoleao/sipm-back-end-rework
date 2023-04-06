@@ -1,9 +1,9 @@
 import {Request, Response } from 'express';
-import { Usuarios } from '../models/usuarios.model';
+import { Employees } from '../models/employees.model';
 import { Polos } from '../models/polos.model';
 
 const GetInit = async (req: Request, res: Response) => {
-    const response = await Usuarios.findAll({include: Polos})
+    const response = await Employees.findAll({include: Polos})
     return res.json(response);
 };
 
