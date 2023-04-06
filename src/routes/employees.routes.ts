@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { GetInit } from '../controllers/employees.controller'
+import { employeesLogin } from '../controllers/employees.controller'
 
 const employeesRouter = Router();
 
-employeesRouter.get('/teste', GetInit);
+employeesRouter.post('/login', employeesLogin);
 
 export default employeesRouter;
