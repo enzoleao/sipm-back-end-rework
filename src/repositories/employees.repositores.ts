@@ -13,7 +13,7 @@ interface LoginTypes {
         }
     })
     if (response) {
-        console.log(response)
+        return {}
     }
 }
 export default {
