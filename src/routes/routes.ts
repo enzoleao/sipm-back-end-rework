@@ -3,7 +3,7 @@ import employeesRouter from './employees.routes';
 import usersRouter from './users.routes';
 const routes = Router();
 
-routes.use(employeesRouter);
-routes.use(usersRouter);
+routes.use('/employees', employeesRouter);
+routes.use('/users',usersRouter);
 
 export default routes;

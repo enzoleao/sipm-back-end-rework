@@ -8,8 +8,8 @@ import { CpfRegistred } from '../models/cpf_registred.model'
 import { RegisteredRgsByEmployees } from '../models/registered_rgs_by_employees.model'
 import { Holidays } from '../models/holidays.model'
 import { Alerts } from '../models/alerts.model'
-dotenv.config()
 
+dotenv.config()
 const DB_NAME = process.env.DB_NAME as string
 const DB_USER = process.env.DB_USER as string
 const DB_HOST = process.env.DB_HOST

@@ -3,6 +3,7 @@ import { GetInit } from '../controllers/users.controller'
 
 const usersRouter = Router();
 
-usersRouter.get('/users', GetInit);
+usersRouter.get('/', GetInit);
+usersRouter.post('/createUser', GetInit);
 
 export default usersRouter;
