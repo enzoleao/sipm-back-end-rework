@@ -7,9 +7,12 @@ export const getAllEmployes = async (req: Request, res: Response) => {
     const response = await Employees.findAll({include: Polos})
     return res.status(200).json(response);
 }
-
 export const employeesLogin = async (req: Request, res: Response) => {
     const response = await employeesRepositores.employeesLogin(req.body)
 
     return res.status(response.status).json(response)
+}
+export const employeesRegister = async(req: Request, res: Response) => {
+    const response = await employeesRepositores.employeesRegister(req.body)
+    return res.status(response.status).json(response.message)
 }
