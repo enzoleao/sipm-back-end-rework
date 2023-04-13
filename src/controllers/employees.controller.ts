@@ -13,6 +13,7 @@ export const employeesLogin = async (req: Request, res: Response) => {
     return res.status(response.status).json(response)
 }
 export const employeesRegister = async(req: Request, res: Response) => {
+    console.log(req.body)
     const response = await employeesRepositores.employeesRegister(req.body)
     return res.status(response.status).json(response.message)
 }

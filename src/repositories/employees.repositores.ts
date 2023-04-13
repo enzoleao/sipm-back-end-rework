@@ -54,7 +54,6 @@ const employeesLogin = async (data: LoginTypes) => {
 const employeesRegister = async (data: EmployeesRegisterType) => {
     const { username, email, password, roles_level, polos_id } = data
     const passwordHash = await hash(password, 8)
-    
     const response = await Employees.create({
         username: username,
         email: email,
