@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from 'jsonwebtoken'
+import { AppError } from "../erros/AppError";
 
 
 export const tokenAuthentication = ( req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +9,7 @@ export const tokenAuthentication = ( req: Request, res: Response, next: NextFunc
         verify(`${token}`, process.env.SECRET as string)
         next()
     }catch{
-        res.status(401).json({message:'Token invalid'})
+        throw new AppError("Invalid token")
     } 
 }
 export const rolesLevel1 = async ( req: Request, res: Response, next: NextFunction) => {
@@ -19,7 +20,7 @@ export const rolesLevel1 = async ( req: Request, res: Response, next: NextFuncti
         next()
     }
     else {
-        return res.status(401).json({message:"Permissão Invalida"})
+        throw new AppError("Permissão Invalida")
     }
 }
 export const rolesLevel2 = ( req: Request, res: Response, next: NextFunction) => {
@@ -30,7 +31,7 @@ export const rolesLevel2 = ( req: Request, res: Response, next: NextFunction) =>
         next()
     }
     else {
-        return res.status(401).json({message:"Permissão Invalida"})
+        throw new AppError("Permissão Invalida")
     }
 }
 export const rolesLevel3 = ( req: Request, res: Response, next: NextFunction) => {
@@ -41,7 +42,7 @@ export const rolesLevel3 = ( req: Request, res: Response, next: NextFunction) =>
         next()
     }
     else {
-        return res.status(401).json({message:"Permissão Invalida"})
+        throw new AppError("Permissão Invalida")
     }
 }
 export default {

@@ -2,6 +2,7 @@ import { Employees } from "../models/employees.model";
 import { sign } from 'jsonwebtoken'
 import { Polos } from "../models/polos.model";
 import { hash, compare } from "bcrypt";
+import { AppError } from "../erros/AppError";
 
 interface LoginTypes {
     user: string;
@@ -22,11 +23,11 @@ const employeesLogin = async (data: LoginTypes) => {
         include: Polos
     })
     if (!response) {
-        return { message:"Usuario e/ou senha estão incorretos", status: 404}
+        throw new AppError("Usuário e/ou senha estão incorretos")
     }
     const passwordMatch = await compare(data.password, response.password)
     if (!passwordMatch){
-        return { message:"Usuario e/ou senha estão incorretos", status: 404}
+        throw new AppError("Usuário e/ou senha estão incorretos")
     }
     const { id, username, email, roles_level } = response.dataValues
     const token = sign(
@@ -54,16 +55,23 @@ const employeesLogin = async (data: LoginTypes) => {
 const employeesRegister = async (data: EmployeesRegisterType) => {
     const { username, email, password, roles_level, polos_id } = data
     const passwordHash = await hash(password, 8)
-    const response = await Employees.create({
+    const response = await Employees.findOne({
+        where:{ 
+            username: username
+        }
+    })
+    if (response){
+        throw new AppError("Usúario já existente")
+    }
+    await Employees.create({
         username: username,
         email: email,
         password: passwordHash,
         roles_level: roles_level,
         polos_id: polos_id
     })
-    .then((res) => {return {message:"Cadastrado com sucesso", status: 201}})
-    .catch((err)=> {return {message:"Ocorreu algum erro", status: 400}})
-    return (response)
+    
+    return ({message: "Cadastrado com sucesso"})
 }
 export default {
     employeesLogin,
