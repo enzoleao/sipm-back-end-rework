@@ -26,6 +26,12 @@ export class Usuarios extends Model {
   })
   rank_level!: string;
 
+  @Column({
+    type: DataType.STRING(255),
+    allowNull: false
+  })
+  modelo!: string;
+
   @BelongsTo(() => Unidades, 'unidades_id')
   unidades!: Unidades;
 
