@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 import express, { NextFunction, Request, Response } from 'express';
 import Routes from './routes/routes'
 import { AppError } from './erros/AppError';
-//import dbConnection from './services/connection';
+// import dbConnection from './services/connection';
 
 
 dotenv.config()
@@ -29,5 +29,5 @@ app.use(
   }
 );
 
-//dbConnection.sync({alter:true})
+// dbConnection.sync({alter:true})
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))

@@ -1,5 +1,5 @@
 import { Table, Model, Column, DataType, BelongsTo } from "sequelize-typescript"
-import { Usuarios } from "./users.model";
+import { Employees } from "./employees.model";
 
 @Table({
   tableName: "registered_rgs_by_employees",
@@ -13,11 +13,11 @@ export class RegisteredRgsByEmployees extends Model {
   })
   name!: string;
 
-  @BelongsTo(() => Usuarios, 'updated_id')
-  updatedBy!: Usuarios;
+  @BelongsTo(() => Employees, 'updated_id')
+  updatedBy!: Employees;
 
-  @BelongsTo(() => Usuarios, 'created_id')
-  createdBy!: Usuarios;
+  @BelongsTo(() => Employees, 'created_id')
+  createdBy!: Employees;
 
   
 }

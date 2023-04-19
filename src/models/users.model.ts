@@ -24,7 +24,7 @@ export class Usuarios extends Model {
     type: DataType.STRING(255),
     allowNull: false
   })
-  rank!: string;
+  rank_level!: string;
 
   @BelongsTo(() => Polos, 'unidades_id')
   unidades!: Unidades;
@@ -37,11 +37,5 @@ export class Usuarios extends Model {
     allowNull: false
   })
   date!: string;
-
-  @Column({
-    type: DataType.TIME,
-    allowNull: false
-  })
-  time!: string;
   
 }
