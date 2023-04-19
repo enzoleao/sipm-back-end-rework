@@ -2,7 +2,7 @@ import { Polos } from "../models/polos.model"
 import { Unidades } from "../models/unidades.model"
 import { Usuarios } from "../models/users.model"
 
-type DataTypes = {
+type schedulesType = {
     name: string
     cpf: string
     rank_level: string
@@ -15,6 +15,6 @@ export const getAllAppointments = async () => {
     const response = await Usuarios.findAll({include: [Polos, Unidades], order:[['polos_id', 'ASC'], ['date','ASC']]})
     return response
 }
-export const registerSchedules = async (data: DataTypes) => {
+export const registerSchedules = async (data: schedulesType) => {
 
 }
