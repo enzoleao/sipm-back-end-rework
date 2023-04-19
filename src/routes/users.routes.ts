@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { GetInit } from '../controllers/users.controller'
+import { allAppointments } from '../controllers/users.controller'
 
 const usersRouter = Router();
 
-usersRouter.get('/', GetInit);
-usersRouter.post('/createUser', GetInit);
+usersRouter.get('/', allAppointments);
 
 export default usersRouter;

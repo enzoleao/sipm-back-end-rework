@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import { Employees } from '../models/employees.model';
-import { Polos } from '../models/polos.model';
+import { getAllAppointments } from '../repositories/users.repositores';
 
-export const GetInit = async (req: Request, res: Response) => {
-    const response = await Employees.findAll({include: Polos})
-    return res.json(response);
+
+export const allAppointments = async (req: Request, res: Response) => {
+    const response = await getAllAppointments()
+    return res.status(200).json(response);
 };
+
 

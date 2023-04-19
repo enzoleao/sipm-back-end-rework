@@ -26,7 +26,7 @@ export class Usuarios extends Model {
   })
   rank_level!: string;
 
-  @BelongsTo(() => Polos, 'unidades_id')
+  @BelongsTo(() => Unidades, 'unidades_id')
   unidades!: Unidades;
 
   @BelongsTo(() => Polos, 'polos_id')

@@ -29,5 +29,5 @@ app.use(
   }
 );
 
-// dbConnection.sync({alter:true})
+//dbConnection.sync({alter:true})
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`))
